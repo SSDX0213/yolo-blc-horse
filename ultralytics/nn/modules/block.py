@@ -5,6 +5,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+from .van import LSKA
+from .attention import BAM
+
 from .conv import Conv, DWConv, GhostConv, LightConv, RepConv
 from .transformer import TransformerBlock
 
@@ -14,10 +17,12 @@ __all__ = (
     "HGStem",
     "SPP",
     "SPPF",
+    "BAM",
     "C1",
     "C2",
     "C3",
     "C2f",
+    "C2f_LSKA",
     "C3x",
     "C3TR",
     "C3Ghost",
@@ -390,3 +395,17 @@ class ResNetLayer(nn.Module):
     def forward(self, x):
         """Forward pass through the ResNet layer."""
         return self.layer(x)
+
+
+class C2f_LSKA(nn.Module):
+    def __init__(self, in_channels, out_channels, k_size=53):
+        super(C2f_LSKA, self).__init__()
+        self.conv = nn.Conv2d(in_channels, out_channels, 3, 1, 1)
+        self.bn = nn.BatchNorm2d(out_channels)
+        self.relu = nn.ReLU(inplace=True)
+        self.lska = LSKA(out_channels, k_size)
+
+    def forward(self, x):
+        x = self.relu(self.bn(self.conv(x)))
+        x = self.lska(x)
+        return x

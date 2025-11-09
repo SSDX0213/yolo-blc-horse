@@ -28,6 +28,7 @@ from .block import (
     Bottleneck,
     BottleneckCSP,
     C2f,
+    C2f_LSKA,
     C3Ghost,
     C3x,
     GhostBottleneck,
@@ -53,6 +54,7 @@ from .conv import (
     SpatialAttention,
 )
 from .head import OBB, Classify, Detect, Pose, RTDETRDecoder, Segment
+from .attention import BAM
 from .transformer import (
     AIFI,
     MLP,
@@ -79,6 +81,7 @@ __all__ = (
     "ChannelAttention",
     "SpatialAttention",
     "CBAM",
+    "BAM",
     "Concat",
     "TransformerLayer",
     "TransformerBlock",
@@ -93,6 +96,7 @@ __all__ = (
     "C2",
     "C3",
     "C2f",
+    "C2f_LSKA",
     "C3x",
     "C3TR",
     "C3Ghost",

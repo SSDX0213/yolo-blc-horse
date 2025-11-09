@@ -1,0 +1,7 @@
+path: /root/autodl-tmp/photoslabels/horse
+train: images/train
+val: images/val
+
+nc: 1
+names:
+  0: horse

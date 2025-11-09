@@ -11,8 +11,10 @@ from ultralytics.nn.modules import (
     AIFI,
     C1,
     C2,
+    C2f_LSKA,
     C3,
     C3TR,
+    BAM,
     OBB,
     SPP,
     SPPF,
@@ -66,6 +68,7 @@ class BaseModel(nn.Module):
     """The BaseModel class serves as a base class for all the models in the Ultralytics YOLO family."""
 
     def forward(self, x, *args, **kwargs):
+    
         """
         Forward pass of the model on a single scale. Wrapper for `_forward_once` method.
 
@@ -348,7 +351,8 @@ class OBBModel(DetectionModel):
     def init_criterion(self):
         """Initialize the loss criterion for the model."""
         return v8OBBLoss(self)
-
+    
+from ultralytics.nn.modules.attention import BAM, OSA
 
 class SegmentationModel(DetectionModel):
     """YOLOv8 segmentation model."""
@@ -799,6 +803,27 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             args = [ch[f]]
         elif m is Concat:
             c2 = sum(ch[x] for x in f)
+            
+        elif m is BAM:
+            # f can be int or list
+            if isinstance(f, list):
+                c_list = [ch[x] for x in f]  # e.g. [64,128,512]
+            else:
+                c_list = ch[f]
+
+            # 期望 YAML args 中只写 out_c 或写为空
+            # 如果用户在 YAML 中写了多个数字（如 [64,128,256]），我们只取最后一个作为 out_c
+            if len(args) >= 1:
+                out_c = args[-1]
+            else:
+                out_c = None
+
+            # 将通道列表作为第一个参数，out_c作为第二参数传入 BAM
+            args = [c_list] if out_c is None else [c_list, out_c]
+
+            # for ch tracking set c2 to out_c if provided else fallback to first input
+            c2 = out_c or (c_list[0] if isinstance(c_list, (list, tuple)) else c_list)
+            
         elif m in (Detect, Segment, Pose, OBB):
             args.append([ch[x] for x in f])
             if m is Segment:

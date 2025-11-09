@@ -1,0 +1,12 @@
+path: /root/autodl-tmp/photoslabels/part
+train: images/train
+val: images/val
+
+nc: 6
+names:
+  0: limb-front-r
+  1: limb-after-r
+  2: body
+  3: limb-front-l
+  4: limb-after-l
+  5: head
