@@ -3,7 +3,7 @@ from torchinfo import summary
 import torch
 from thop import profile
 
-model = YOLO("yolov8-seg-pro.yaml").model
+model = YOLO("yolov8-seg.yaml").model
 
 # 统计参数量
 summary(model, input_size=(1, 3, 640, 640))
