@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 
 from ultralytics.nn.modules import (
+    LR_ASPP,
     PCC_C2f,
     C2f_GhostConv,
     AIFI,

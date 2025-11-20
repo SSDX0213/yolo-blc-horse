@@ -127,7 +127,7 @@ class PCC_C2f(nn.Module):
     def __init__(self, c1, c2, n=1, shortcut=False, g=1, e=0.5):
         super().__init__()
         
-        print(f"PCC_C2f INIT: c2 received = {c2}") # 检查 c2 是否等于 32
+        # print(f"PCC_C2f INIT: c2 received = {c2}") # 检查 c2 是否等于 32
         
         # 1. 计算隐藏通道 self.c
         self.c = int(c2 * e)  # hidden channels
@@ -153,7 +153,7 @@ class PCC_C2f(nn.Module):
 
         # 计算并赋值给 output_tensor
         output_tensor = self.cv2(torch.cat(y, 1))
-        print(f"PCC_C2f Output Shape: {output_tensor.shape}")
+        # print(f"PCC_C2f Output Shape: {output_tensor.shape}")
 
         # 仅返回计算好的张量
         return output_tensor

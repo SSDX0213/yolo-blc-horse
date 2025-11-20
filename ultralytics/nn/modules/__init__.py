@@ -17,6 +17,7 @@ Example:
     ```
 """
 from .GhostConv import C2f_GhostConv
+from .LRASPP import LR_ASPP
 from .PConv import PCC_C2f
 from .block import (
     C1,
@@ -88,6 +89,7 @@ from .transformer import (
 )
 
 __all__ = (
+    "LR_ASPP",
     "PCC_C2f",
     "Conv",
     "Conv2",
