@@ -9,7 +9,7 @@ if __name__ == "__main__":
     print(f"使用设备: {device}")
 
     # 1. 加载模型
-    model = YOLO("./yolov8-seg.yaml")
+    model = YOLO("./yolov8-seg-PCC-LRASPP.yaml")
 
     # 3. 训练（默认激活函数）
     model.train(
@@ -18,7 +18,7 @@ if __name__ == "__main__":
         imgsz=640,
         batch=64,
         project="horse_models_lite",
-        name="Orin",
+        name="PCC-LRASPP",
         device="0",
         lr0=0.002,
         lrf=0.01,
