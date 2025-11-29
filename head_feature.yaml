@@ -1,0 +1,15 @@
+path: /root/autodl-tmp/photoslabels/head_feature
+
+train: images/train
+val: images/val
+
+nc: 8
+names:
+  0: head-features-04
+  1: head-features-01
+  2: head-features-03
+  3: head-features-02
+  4: head-features-06
+  5: head-features-08
+  6: head-features-07
+  7: head-features-05

@@ -3,7 +3,7 @@ from torchinfo import summary
 import torch
 from thop import profile
 
-modelname = "yolov8-seg-PCC.yaml"
+modelname = "yolov8-seg.yaml"
 
 model = YOLO(modelname).model
 

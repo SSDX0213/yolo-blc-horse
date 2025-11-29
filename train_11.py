@@ -8,20 +8,21 @@ if __name__ == "__main__":
     print(f"使用设备: {device}")
 
     # 1️⃣ 加载 YOLOv11s-seg 模型结构
-    model = YOLO("yolo11s-seg.yaml")   # ✅ 改这里
+    model = YOLO("yolo11-seg.yaml")   # ✅ 改这里
 
     # 2️⃣ 可选：加载预训练权重
-    model.load("yolo11s-seg.pt")       # ✅ 改这里
+    model.load("yolo11n-seg.pt")       # ✅ 改这里
 
     # 3️⃣ 开始训练
     model.train(
         data="./horse.yaml",             # 你的数据配置文件
-        epochs=300,
+        epochs=200,
         imgsz=640,
-        batch=32,
-        project="horse_cascade_models",
-        name="Horse/orin_v11s",  # ✅ 建议修改名字防混淆
+        batch=64,
+        project="horse_models_lite",
+        name="orin_v11n",  # ✅ 建议修改名字防混淆
         device="0",
         lr0=0.002,
-        lrf=0.01
+        lrf=0.01,
+        cache="ram"
     )

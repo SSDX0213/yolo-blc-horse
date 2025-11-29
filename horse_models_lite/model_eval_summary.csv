@@ -1,0 +1,4 @@
+Model Path,Type,Precision,Recall,F1,mAP50,mAP50-95,Params(M),FLOPs(G)
+PCC2/weights/best.pt,PCC,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+Orin/weights/best.pt,Lite,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+PCC-LRASPP/weights/best.pt,PCC,N/A,N/A,N/A,N/A,N/A,N/A,N/A

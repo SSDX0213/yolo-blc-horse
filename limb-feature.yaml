@@ -1,0 +1,13 @@
+path: /root/autodl-tmp/photoslabels/limb-feature
+train: images/train
+val: images/val
+
+nc: 7
+names:
+  0: limb-features-01
+  1: limb-features-04
+  2: limb-features-02
+  3: limb-features-03
+  4: limb-features-05
+  5: limb-features-05
+  6: limb-features-07
